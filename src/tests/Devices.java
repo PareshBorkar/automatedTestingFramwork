@@ -25,14 +25,16 @@ public class Devices{
 		caps.setCapability("noReset", "true");
 		try {
 			driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:"+appiumPort+"/wd/hub"), caps);
-		}
-		catch (MalformedURLException e) {
+		}catch (MalformedURLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 	
 	public void buttonClick(String xPath) {
-		driver.findElement(By.xpath(xPath)).click();
+		driver.findElement(By.xpath(xPath)).click();//what sorcery is happening with driver?! how driver gets value
 	}
-
+	
+	public String getTextFromXapth(String xPath) {
+		return driver.findElement(By.xpath(xPath)).getAttribute("content-desc").toString();
+	}
 }
