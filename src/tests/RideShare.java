@@ -61,7 +61,6 @@ public class RideShare extends Devices {
 	// buttonClick(deviceDriver, "//android.widget.Button[@content-desc='OK ']");
 	// }
 	//
-	String deviceName=null;
 	public void handShakeTrip(RideShare otherDevice) throws InterruptedException {
 		// publishAsPasseng
 		otherDevice.buttonClick("//android.view.View[@index='3']/android.widget.Button[@index='0']");
@@ -119,52 +118,37 @@ public class RideShare extends Devices {
 		buttonClick("//android.widget.Button[@content-desc='END ']");
 	}
 	
-	public void setUpDevice(String deviceId,String osVersion,String osName,String appiumPort,String appPackage,String appActivity) {
-		super.setUpDevice(deviceId,osVersion,osName,appiumPort,appPackage,appActivity);
-		
-		try {
-			Thread.sleep(40000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		buttonClick("//android.widget.Button[contains(@content-desc,'menu')]");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		buttonClick("//android.widget.Button[@content-desc='person Profile arrow dropright ']");
-		
+//	public void setUpDevice(String deviceId,String osVersion,String osName,String appiumPort,String appPackage,String appActivity) {
+//		super.setUpDevice(deviceId,osVersion,osName,appiumPort,appPackage,appActivity);
+//		try {
+//			Thread.sleep(40000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		buttonClick("//android.widget.Button[contains(@content-desc,'menu')]");
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		buttonClick("//android.widget.Button[@content-desc='person Profile arrow dropright ']");
 //		try {
 //			Thread.sleep(1000);
 //		} catch (InterruptedException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
-		String name = getTextFromXapth("//android.widget.EditText[@text='Paresh']"); 
-		System.out.println(name);
+//		String name = getTextFromXapth("//android.widget.EditText[@text='Paresh']"); 
+//		System.out.println(name);
+//		String name = "Paresh Borkar";// this is needed to identify the user
 //		this.deviceName = name;
-	}
+//	}
 
-	public void publishTrip(String mode) throws InterruptedException {
-		switch (mode) {
-		case "HOST":
-			hostPublish();
-			break;
-		case "PASSENGER":
-			passengerPublish();
-			break;
-		default:
-			break;
-		}
-	}
-
-	private void hostPublish() throws InterruptedException {
+	public void hostPublish() throws InterruptedException {
 		buttonClick("//android.view.View[@index='3']/android.widget.Button[@index='0']");
 		Thread.sleep(2000);
 		buttonClick("//android.widget.Button[contains(@content-desc,'briefcase Work')]");
@@ -176,7 +160,7 @@ public class RideShare extends Devices {
 		Thread.sleep(30000);
 	}
 
-	private void passengerPublish() throws InterruptedException {
+	public void passengerPublish() throws InterruptedException {
 		buttonClick("//android.view.View[@index='3']/android.widget.Button[@index='0']");
 		Thread.sleep(2000);
 		buttonClick("//android.widget.Button[contains(@content-desc,'briefcase Work')]");
@@ -191,6 +175,9 @@ public class RideShare extends Devices {
 		// make sure that otherDevice is only requested
 		buttonClick("//android.widget.Image[@content-desc='profile_img']");
 		Thread.sleep(3000); 
+		if(otherDevice.userName == "Ronald") {
+			
+		}
 		buttonClick("//android.widget.Button[@content-desc='REQUEST ']");
 		Thread.sleep(10000);
 	}
