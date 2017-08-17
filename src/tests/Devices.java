@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,24 +28,25 @@ public class Devices {
 		JsonObject obj = (JsonObject) parser
 				.parse(new FileReader("C:\\Users\\user\\eclipse-workspace\\AppiumTest\\src\\tests\\config.json"));
 		JsonObject userObj = (JsonObject) obj.get(userName);
-		
+
 		// Set the Desired Capabilities
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("deviceName", "My Phone");
 		caps.setCapability("udid", userObj.get("deviceId"));
 		caps.setCapability("platformName", userObj.get("deviceId"));
 		caps.setCapability("platformVersion", userObj.get("osVersion"));
-		caps.setCapability("appPackage",userObj.get("appPackage"));
+		caps.setCapability("appPackage", userObj.get("appPackage"));
 		caps.setCapability("appActivity", userObj.get("appActivity"));
 		caps.setCapability("noReset", "true");
-		this.userName = userObj.get("nameInApp").toString();
-	
+		this.userName = userObj.get("nameInApp").toString().replaceAll("^\"|\"$", "");
+
 		try {
-			driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:"+userObj.get("appiumPort").toString()+"/wd/hub"), caps);
+			driver = new AndroidDriver<WebElement>(
+					new URL("http://127.0.0.1:" + userObj.get("appiumPort").toString() + "/wd/hub"), caps);
 		} catch (MalformedURLException e) {
-			System.out.println("error "+e.getMessage());
+			System.out.println("error " + e.getMessage());
 		}
-		
+
 	}
 
 	public void buttonClick(String xPath) {
@@ -53,5 +55,19 @@ public class Devices {
 
 	public String getTextFromXapth(String xPath) {
 		return driver.findElement(By.xpath(xPath)).getAttribute("content-desc").toString();
+	}
+
+	public List<WebElement> getViewList(String xPath) {
+		List<WebElement> viewList = driver.findElements(By.xpath(xPath));
+		return viewList;
+	}
+
+	public Boolean checkElementPresent(String xPath) {
+		if (driver.findElements(By.xpath(xPath)).isEmpty()) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 }
