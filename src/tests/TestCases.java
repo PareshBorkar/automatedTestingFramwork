@@ -19,17 +19,19 @@ public class TestCases {
 		RideShare device1 = new RideShare();
 		RideShare device2 = new RideShare();
 		// Instantiate Appium Driver
-		device1.setUpDevice("Paresh");
+		
 		device2.setUpDevice("Ronald");
+		device1.setUpDevice("Paresh");
 		Thread.sleep(40000);
-		device1.passengerPublish();
-		device2.hostPublish();
+		device2.passengerPublish();
+		device1.hostPublish();
 		Thread.sleep(10000);
-		device1.requestPickup(device2);//have to check name
-		device2.acceptRequest(device1);//have to check name 
-		device1.enterRide(device2);//no need to check name
-		device2.drop(device1);//no need to check name
-		device1.rate(device2);//no need to check name
+		device2.requestPickup(device1);//have to check name
+		Thread.sleep(8000);
+		device1.acceptRequest(device2);//have to check name 
+		device2.enterRide(device1);//no need to check name
+		device1.drop(device1);//no need to check name
+		//device1.rate(device2);//no need to check name
 	}
 
 	public void sunnyDayHandshakeOneHostTwoPassegers() throws InterruptedException {
