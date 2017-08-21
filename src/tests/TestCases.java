@@ -20,9 +20,9 @@ public class TestCases {
 		RideShare device2 = new RideShare();
 		// Instantiate Appium Driver
 		
-		device2.setUpDevice("Ronald");
-		device1.setUpDevice("Paresh");
-		Thread.sleep(40000);
+		device2.setUpDevice("Paresh");
+		device1.setUpDevice("Lester");
+		Thread.sleep(30000);
 		device2.passengerPublish();
 		device1.hostPublish();
 		Thread.sleep(10000);

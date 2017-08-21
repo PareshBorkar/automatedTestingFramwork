@@ -18,13 +18,13 @@
 "appActivity":".MainActivity"
 },
 "Lester":{
-"nameInApp":"",
-"deviceId":"",
-"osVersion":"",
-"osName":"",
-"appiumPort":"",
-"appPackage":"",
-"appActivity":""
+"nameInApp":"Lester Dsouza",
+"deviceId":"fd303a77",
+"osVersion":"7.1.1",
+"osName":"Android",
+"appiumPort":4725,
+"appPackage":"com.almawiz.loloshare",
+"appActivity":".MainActivity"
 },
 "Yohan":{
 "nameInApp":"",

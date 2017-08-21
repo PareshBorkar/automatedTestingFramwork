@@ -17,6 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 
 public class Devices {
 	private AppiumDriver<WebElement> driver = null;
@@ -31,6 +32,8 @@ public class Devices {
 
 		// Set the Desired Capabilities
 		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");//to support Android API Level 20(5.0) and above
+		caps.setCapability("newCommandTimeout", "120");// to extend session timeout
 		caps.setCapability("deviceName", "My Phone");
 		caps.setCapability("udid", userObj.get("deviceId"));
 		caps.setCapability("platformName", userObj.get("deviceId"));
@@ -42,11 +45,10 @@ public class Devices {
 
 		try {
 			driver = new AndroidDriver<WebElement>(
-					new URL("http://127.0.0.1:" + userObj.get("appiumPort").toString() + "/wd/hub"), caps);
+					new URL("http://0.0.0.0:" + userObj.get("appiumPort").toString() + "/wd/hub"), caps);
 		} catch (MalformedURLException e) {
 			System.out.println("error " + e.getMessage());
 		}
-
 	}
 
 	public void buttonClick(String xPath) {
